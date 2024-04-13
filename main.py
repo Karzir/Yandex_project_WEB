@@ -13,14 +13,29 @@ SqlAlchemyBase = orm.declarative_base()
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
-@app.route('/')
-def main_window():
-    return 'Главная страница'
-
-
 def main():
     db_session.global_init('db/blogs.db')
     app.run()
+
+
+@app.route('/')
+def main_window():
+    return redirect('/basic')
+
+
+@app.route('/basic')
+def basic():
+    return render_template('basic.html', title='Поставьте пожалуйста 100 баллов')
+
+
+@app.route('/top')
+def top():
+    db_sess = db_session.create_session()
+    zxc = []
+    for i in db_sess.query(User).all():
+        zxc.append([i.name, i.progress])
+    zxc = sorted(zxc, key=lambda x: (x[1], x[0]))
+    return render_template('top.html', title='Топ пользователей', top=zxc)
 
 
 @login_manager.user_loader
@@ -61,7 +76,7 @@ def reqister():
             name=form.name.data,
             email=form.email.data,
             check_password=form.password.data,
-            position=form.about.data
+            progress=0
         )
         user.set_password(form.password.data)
         db_sess.add(user)
