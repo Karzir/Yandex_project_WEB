@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var message = "{{ message }}";
+            if (message){
+                $('#notification').text(message).fadeIn().delay(3000).fadeOut();
+            }
+        });
+    </script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f0f0f0;
+    }
+    h1 {
+        color: #333;
+    }
+    .profile {
+        margin: 20px auto;
+        padding: 20px;
+        width: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+    }
+    input[type="text"], input[type="password"], input[type="file"], input[type="submit"] {
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 80%;
+        max-width: 300px;
+    }
+    .notification {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+</style>
+
+<div class="container mt-4">
+    <h1>Ваш профиль</h1>
+    <div class="profile">
+        <img src="/static/User_profile_img/user{{current_user.id}}.jpg" alt="User Photo">
+        <form action="#" method="post" enctype="multipart/form-data">
+            <input type="file" name="photo" accept="image/*"><br>
+            <input type="text" name="username" placeholder="Введите имя"><br>
+            <input type="password" name="password" placeholder="Введите пароль"><br>
+            <input type="submit" value="Сохранить изменения">
+        </form>
+        <a class="btn btn-dark" href="/logout">Выйти</a>
+         <div id="notification" class="notification"></div>
+    </div>
+</div>
+{% endblock %}
