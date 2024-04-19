@@ -99,7 +99,7 @@ def profile(user_id):
             return render_template('Error.html', error='Указан неверный или несуществующий id', title='Ошибка!')
         if user != current_user:
             return render_template('Error.html', error='У вас нет прав доступа к профилю пользователя', title='Ошибка!')
-        return render_template('profile.html')
+        return render_template('profile.html', title=current_user.name)
     elif request.method == 'POST':
         photo = request.files['photo']
         username = request.form['username']
@@ -113,7 +113,7 @@ def profile(user_id):
             user.check_password = password
         db_sess.commit()
         message = "Данные успешно изменены!"
-        return render_template('profile.html', message=message)
+        return render_template('profile.html', message=message, title=current_user.name)
 
 
 @app.route('/top')
@@ -122,7 +122,7 @@ def top():
     zxc = []
     for i in db_sess.query(User).all():
         zxc.append([i.name, i.progress, i.photo])
-    zxc = sorted(zxc, key=lambda x: (x[1], x[0]))
+    zxc = sorted(zxc, key=lambda x: (x[1], x[0]))[:100]
     return render_template('top.html', title='Топ пользователей', top=zxc)
 
 
