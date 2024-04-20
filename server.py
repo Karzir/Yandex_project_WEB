@@ -87,7 +87,6 @@ def reqister():
 
 
 @app.route('/profile/<user_id>', methods=['GET', 'Post'])
-@login_required
 def profile(user_id):
     db_sess = db_session.create_session()
     try:
