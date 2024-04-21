@@ -78,15 +78,28 @@
 <div class="container mt-4">
     <h1>Ваш профиль</h1>
     <div class="profile">
-        <img src="/static/User_profile_img/user{{current_user.id}}.jpg" alt="User Photo" id="user_photo">
         <form action="#" method="post" enctype="multipart/form-data">
-            <label for="file-upload" class="custom-file-upload">
-                <img src="/static/standart_img/change_ico.jpg" id="change_ico"></label><br>
-            <input type="file" name="photo" accept="image/*" id="file-upload">
-            <input type="text" name="username" placeholder="Введите имя"><br>
-            <input type="password" name="password" placeholder="Введите пароль"><br>
+            <table style="border: 1px none rgb(0, 0, 0); margin: auto;">
+                <tbody>
+                <tr>
+                    <td style="border: 1px none rgb(0, 0, 0);">
+                        <br>
+                        <img src="/static/User_profile_img/user{{current_user.id}}.jpg" alt="User Photo"
+                             id="user_photo"><br>
+                        <label for="file-upload" class="custom-file-upload">
+                            <img src="/static/standart_img/change_ico.jpg" id="change_ico"></label><br>
+                        <input type="file" name="photo" accept="image/*" id="file-upload">
+                    </td>
+                    <td style="border: 1px none rgb(0, 0, 0);">
+                        <input type="text" name="username" placeholder="Введите имя"><br>
+                        <input type="password" name="password" placeholder="Введите пароль"><br>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
             <input type="submit" value="Сохранить изменения">
         </form>
+
         <a class="btn btn-dark" href="/logout" style="margin-top: 30px;">Выйти из аккаунта</a>
         <div id="notification" class="notification"></div>
     </div>
