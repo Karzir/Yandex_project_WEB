@@ -105,6 +105,11 @@
     <div class="row">
         <div class="col">
             <h1 style="text-align: center;">Прогулка по сайтам</h1>
+            <p>На данном сайте собраны ссылки на разные интересные сайты, по которым мы предлагаем вам прогуляться,
+                параллельно выполняя задания разной сложности и получая за них звёздочки.</p>
+            <p>Также вы сможете посоревноваться со своими друзьями и другими пользователями за первенство по количеству
+                звезд в нашем рейтинге.</p>
+            <p>Регистрируйтесь и зовите друзей, задания могут быть как очень лёгкими, так и невероятно сложными. </p>
             {% if current_user.is_authenticated %}
             <div id="tasks">
                 <ul class="accordion">
@@ -130,7 +135,8 @@
                                 <div class="inner">
                                     {% if not 'level_1:task_2' in current_user.lst_complete_task %}
                                     <p>
-                                        Найдите минимум три невидимые коровы по звуку. Нажмите "Старт", чтобы начать. Время ограничено!
+                                        Найдите минимум три невидимые коровы по звуку. Нажмите "Старт", чтобы начать.
+                                        Время ограничено!
                                     </p>
                                     <a class="btn btn-dark" href="/task/level_1/task_2" style="color:white;">Старт</a>
                                     {%else%}
@@ -141,9 +147,14 @@
                             <li>
                                 <a href="#" class="toggle">3 задание</a>
                                 <div class="inner">
+                                    {% if not 'level_1:task_3' in current_user.lst_complete_task %}
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Звёздочка просто так, только не залипнете)
                                     </p>
+                                    <a class="btn btn-dark" href="/task/level_1/task_3" style="color:white;">Старт</a>
+                                    {%else%}
+                                    <p>Вы уже проходили это задание!</p>
+                                    {% endif %}
                                 </div>
                             </li>
                         </ul>
@@ -154,11 +165,30 @@
                         <ul class="inner">
                             <li>
                                 <a href="#" class="toggle">1 задание</a>
+
                                 <div class="inner">
-                                    <p>
-                                        Сама напишешь задание, мне лень
-                                    </p>
+                                    <form action="/task/level_2/task_1" method="post">
+                                        {% if not 'level_2:task_1' in current_user.lst_complete_task %}
+                                        <p>
+                                            Давайте представим что вы выйграли миллион рублей в лотерею. Интересно
+                                            сколько у
+                                            вас теперь долларов по последнему курсу?
+                                        </p>
+                                        <p>Введите целую часть суммы в строку и нажмите кнопку "проверить". Актуальный
+                                            курс можно посмотреть <a href="https://www.cbr.ru/"
+                                                                     style="border-bottom: 2px solid #333;"
+                                                                     target="_blank">здесь.</a>
+                                        </p>
+                                        <input type="text" name="level_2_task_1"><br>
+                                        <input class='btn btn-dark' type="submit" style="color:white;"
+                                               value="Проверить">
+                                    </form>
+                                    {%else%}
+                                    <p>Вы уже проходили это задание!</p>
+                                    {% endif %}
+
                                 </div>
+
                             </li>
                             <li>
                                 <a href="#" class="toggle">2 задание</a>

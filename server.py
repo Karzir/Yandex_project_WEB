@@ -6,7 +6,8 @@ from data.users import User
 from data.login_form import LoginForm
 from forms.user import RegisterForm
 
-from tasks.level_1 import task_1, task_2
+from tasks.level_1 import l1_task_1, l1_task_2, l1_task_3
+from tasks.level_2 import l2_task_1
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -129,12 +130,18 @@ def top():
 
 
 @login_required
-@app.route('/task/<level_n>/<task_n>')
+@app.route('/task/<level_n>/<task_n>', methods=['GET', 'Post'])
 def task(level_n, task_n):
     db_sess = db_session.create_session()
     user = db_sess.query(User).get(int(current_user.id))
-    k = int(level_n.split('-')[-1])
-    reward = eval(f'{task_n}.main()')
+    k = int(level_n.split('_')[-1])
+    if level_n == 'level_1':
+        reward = eval(f'l1_{task_n}.main()')
+    if request.method == 'POST':
+        if level_n == 'level_2':
+            if task_n == 'task_1':
+                res = request.form['level_2_task_1']
+                reward = str(l2_task_1.main()) == res
     user.progress += reward * k
     if reward:
         user.lst_complete_task += f' {level_n}:{task_n}'
