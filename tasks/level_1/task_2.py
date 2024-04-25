@@ -3,10 +3,9 @@ import time
 from selenium import webdriver
 
 
-#Найдите минимум три невидимые коровы по звуку. Нажмите "Старт", чтобы начать. Время ограничено!
+# Найдите минимум три невидимые коровы по звуку. Нажмите "Старт", чтобы начать. Время ограничено!
 def main():
     driver = webdriver.Chrome()
-
     try:
         driver.get('https://findtheinvisiblecow.com/')
         time.sleep(5)
@@ -18,7 +17,7 @@ def main():
         else:
             return False
     except Exception as ex:
-        print('Кажется вы сделали что-то не так! Внимательно прочитайте инструкцию внизу сайта и попробуйте снова.')
+        return False
     finally:
         driver.quit()
 

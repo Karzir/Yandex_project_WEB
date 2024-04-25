@@ -116,7 +116,7 @@
                                 <div class="inner">
                                     {% if not 'level_1:task_1' in current_user.lst_complete_task %}
                                     <p>
-                                        Получите результат 150 или больше на сайте с прикольным котиком. Нажмите
+                                        Получите результат 200 или больше на сайте с прикольным котиком. Нажмите
                                         "Старт", чтобы начать. Время ограничено!
                                     </p>
                                     <a class="btn btn-dark" href="/task/level_1/task_1" style="color:white;">Старт</a>
@@ -128,9 +128,14 @@
                             <li>
                                 <a href="#" class="toggle">2 задание</a>
                                 <div class="inner">
+                                    {% if not 'level_1:task_2' in current_user.lst_complete_task %}
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Найдите минимум три невидимые коровы по звуку. Нажмите "Старт", чтобы начать. Время ограничено!
                                     </p>
+                                    <a class="btn btn-dark" href="/task/level_1/task_2" style="color:white;">Старт</a>
+                                    {%else%}
+                                    <p>Вы уже проходили это задание!</p>
+                                    {% endif %}
                                 </div>
                             </li>
                             <li>
@@ -256,7 +261,8 @@
                 </script>
             </div>
             {% else %}
-            <h1 style="text-align: center;">Для получения доступа к заданиям зарегистрируйтесь или войдите в аккаунт</h1>
+            <h1 style="text-align: center;">Для получения доступа к заданиям зарегистрируйтесь или войдите в
+                аккаунт</h1>
             {% endif %}
         </div>
     </div>
