@@ -17,21 +17,21 @@ def main():
         if not (item1 is None):
             item1 = str(item1).split('>')
             if len(item1) < 3:
-                print('Совет: попытайтесь кликнуть на котика в центре')
+                return False
             else:
                 if int(item1[-3][:-5]) >= 200:
-                    print('Задание выполнено)')
+                    return True
                 else:
-                    print('Не получилось( Попробуйте ещё раз!')
+                    return False
         else:
             item2 = str(item2).split('>')
             if len(item2) < 3:
-                print('Совет: попытайтесь кликнуть на котика в центре')
+                return False
             else:
                 if int(item2[-3][:-5]) >= 200:
-                    print('Задание выполнено)')
+                    return True
                 else:
-                    print('Не получилось( Попробуйте ещё раз!')
+                    return False
     except Exception as ex:
         print('Кажется вы сделали что-то не так! Внимательно прочитайте инструкцию внизу сайта и попробуйте снова.')
     finally:
