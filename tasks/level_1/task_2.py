@@ -14,9 +14,9 @@ def main():
         html = bs4.BeautifulSoup(response, 'lxml')
         item = html.find('div', 'sc-hMqMXs itfgTZ')
         if int(str(item)[-7]) >= 3:
-            print('Задание выполнено)')
+            return True
         else:
-            print('Не получилось( Попробуйте ещё раз!')
+            return False
     except Exception as ex:
         print('Кажется вы сделали что-то не так! Внимательно прочитайте инструкцию внизу сайта и попробуйте снова.')
     finally:
