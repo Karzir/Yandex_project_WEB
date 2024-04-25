@@ -3,8 +3,9 @@ import time
 from selenium import webdriver
 
 
-# Задание: Получите результат 150 или больше на сайте с прикольным котиком. Нажмите "Старт", чтобы начать. Время
-# ограничено! Код:
+
+#Получите результат 200 или больше на сайте с прикольным котиком. Нажмите "Старт", чтобы начать. Время ограничено!
+
 def main():
     driver = webdriver.Chrome()
 
@@ -20,7 +21,9 @@ def main():
             if len(item1) < 3:
                 return False
             else:
-                if int(item1[-3][:-5]) >= 150:
+
+                if int(item1[-3][:-5]) >= 200:
+
                     return True
                 else:
                     return False
@@ -29,15 +32,19 @@ def main():
             if len(item2) < 3:
                 return False
             else:
-                if int(item2[-3][:-5]) >= 150:
+
+                if int(item2[-3][:-5]) >= 200:
+
                     return True
                 else:
                     return False
     except Exception as ex:
         return False
+
     finally:
         driver.quit()
 
 
 if __name__ == '__main__':
     main()
+
