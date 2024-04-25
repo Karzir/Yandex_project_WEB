@@ -5,6 +5,7 @@ import sqlalchemy.orm as orm
 from data.users import User
 from data.login_form import LoginForm
 from forms.user import RegisterForm
+from tasks.level_1 import task_1
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -71,7 +72,8 @@ def reqister():
             email=form.email.data,
             check_password=form.password.data,
             progress=0,
-            photo=''
+            photo='',
+            lst_complete_task=''
         )
         user.set_password(form.password.data)
         db_sess.add(user)
@@ -123,6 +125,25 @@ def top():
         zxc.append([i.name, i.progress, i.photo])
     zxc = sorted(zxc, key=lambda x: (x[1], x[0]))[:100]
     return render_template('top.html', title='Топ пользователей', top=zxc)
+
+
+@login_required
+@app.route('/task/<level_n>/<task_n>')
+def task(level_n, task_n):
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).get(int(current_user.id))
+    k = int(level_n[-1])
+    reward = 0
+    if level_n == 'level_1':
+        if task_n == 'task_1':
+            if task_1.main():
+                reward = 1
+            else:
+                reward = 0
+    user.progress += reward * k
+    user.lst_complete_task += f' {level_n}:{task_n}'
+    db_sess.commit()
+    return redirect('/')
 
 
 @app.route('/logout')

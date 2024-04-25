@@ -2,93 +2,110 @@
 
 {% block content %}
 <style>
+    #tasks @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-stretch: normal;
+    src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsiH0B4gaVc.ttf) format('truetype');
+  }
   #tasks @font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-stretch: normal;
-  src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsiH0B4gaVc.ttf) format('truetype');
-}
-#tasks @font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: normal;
-  src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
-}
-#tasks @font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-stretch: normal;
-  src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1x4gaVc.ttf) format('truetype');
-}
-#tasks @font-face {
-  font-family: 'Pacifico';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/pacifico/v22/FwZY7-Qmy14u9lezJ-6H6Mw.ttf) format('truetype');
-}
-#tasks * {
-  box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
-}
-#tasks a {
-  text-decoration: none;
-  color: inherit;
-}
-#tasks p {
-  font-size: 1.1em;
-  margin: 1em 0;
-}
-#tasks .description {
-  margin: 1em auto 2.25em;
-}
-#tasks body {
-  width: 40%;
-  min-width: 300px;
-  max-width: 400px;
-  margin: 1.5em auto;
-  color: #333;
-}
-#tasks h1 {
-  font-family: "Pacifico", cursive;
-  font-weight: 400;
-  font-size: 2.5em;
-}
-#tasks ul {
-  list-style: none;
-  padding: 0;
-}
-#tasks ul .inner {
-  padding-left: 1em;
-  overflow: hidden;
-  display: none;
-}
-#tasks ul .inner.show {
-  /*display: block;*/
-}
-#tasks ul li {
-  margin: 0.5em 0;
-}
-#tasks ul li a.toggle {
-  width: 100%;
-  display: block;
-  background: rgba(0, 0, 0, 0.78);
-  color: #fefefe;
-  padding: 0.75em;
-  border-radius: 0.15em;
-  transition: background 0.3s ease;
-}
-#tasks ul li a.toggle:hover {
-  background: rgba(0, 0, 0, 0.9);
-}
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: normal;
+    src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
+  }
+  #tasks @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-stretch: normal;
+    src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1x4gaVc.ttf) format('truetype');
+  }
+  #tasks @font-face {
+    font-family: 'Pacifico';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/pacifico/v22/FwZY7-Qmy14u9lezJ-6H6Mw.ttf) format('truetype');
+  }
+  #tasks * {
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+  }
+  #tasks a {
+    text-decoration: none;
+    color: inherit;
+  }
+  #tasks p {
+    font-size: 1.1em;
+    margin: 1em 0;
+  }
+  #tasks .description {
+    margin: 1em auto 2.25em;
+  }
+  #tasks body {
+    width: 40%;
+    min-width: 300px;
+    max-width: 400px;
+    margin: 1.5em auto;
+    color: #333;
+  }
+  #tasks h1 {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-size: 2.5em;
+  }
+  #tasks ul {
+    list-style: none;
+    padding: 0;
+  }
+  #tasks ul .inner {
+    padding-left: 1em;
+    overflow: hidden;
+    display: none;
+  }
+  #tasks ul .inner .inner {
+    text-align:center;
+  }
+  #tasks ul .inner.show {
+    /*display: block;*/
+  }
+  #tasks ul li {
+    margin: 0.5em 0;
+  }
+  #tasks ul li a.toggle {
+    width: 100%;
+    display: block;
+    background: rgba(0, 0, 0, 0.78);
+    color: #fefefe;
+    padding: 0.75em;
+    border-radius: 0.15em;
+    transition: background 0.3s ease;
+  }
+  #tasks ul li a.toggle:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var message = "{{ message }}";
+        if (message){
+            $('#notification').text(message).fadeIn().delay(3000).fadeOut();
+        }
+    });
+    document.getElementById('file-upload').onchange = function(e) {
+  document.querySelector('.custom-file-upload').innerText = e.target.files[0].name || 'Нажмите сюда!';
+};
+</script>
 <div class="container mt-4">
     <div class="row">
         <div class="col">
             <h1 style="text-align: center;">Прогулка по сайтам</h1>
+            {% if current_user.is_authenticated %}
             <div id="tasks">
                 <ul class="accordion">
                     <li>
@@ -97,9 +114,15 @@
                             <li>
                                 <a href="#" class="toggle">1 задание</a>
                                 <div class="inner">
+                                    {% if not 'level_1:task_1' in current_user.lst_complete_task %}
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Получите результат 150 или больше на сайте с прикольным котиком. Нажмите
+                                        "Старт", чтобы начать. Время ограничено!
                                     </p>
+                                    <a class="btn btn-dark" href="/task/level_1/task_1" style="color:white;">Старт</a>
+                                    {%else%}
+                                    <p>Вы уже проходили это задание!</p>
+                                    {% endif %}
                                 </div>
                             </li>
                             <li>
@@ -232,6 +255,9 @@
                   });
                 </script>
             </div>
+            {% else %}
+            <h1 style="text-align: center;">Для получения доступа к заданиям зарегистрируйтесь или войдите в аккаунт</h1>
+            {% endif %}
         </div>
     </div>
 </div>

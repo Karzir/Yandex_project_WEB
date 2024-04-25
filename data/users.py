@@ -16,7 +16,7 @@ class User(SqlAlchemyBase, UserMixin):
     progress = sqlalchemy.Column(sqlalchemy.Integer)
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
     photo = sqlalchemy.Column(sqlalchemy.String)
-
+    lst_complete_task = sqlalchemy.Column(sqlalchemy.String)
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
 
