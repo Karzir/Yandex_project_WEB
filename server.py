@@ -5,9 +5,11 @@ import sqlalchemy.orm as orm
 from data.users import User
 from data.login_form import LoginForm
 from forms.user import RegisterForm
+import pymorphy3
 
 from tasks.level_1 import l1_task_1, l1_task_2, l1_task_3
 from tasks.level_2 import l2_task_1
+from tasks.level_3 import l3_task_1, l3_task_2, l3_task_3
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -97,12 +99,16 @@ def profile(user_id):
         user = db_sess.query(User).get(int(user_id))
     except ValueError:
         return render_template('Error.html', error='Указан неверный или несуществующий id', title='Ошибка!')
+    morph = pymorphy3.MorphAnalyzer()
+    word1 = morph.parse('задание')[0]
+    w = word1.make_agree_with_number(len(user.lst_complete_task.split())).word
+    w = f'Вы выполнили {len(user.lst_complete_task.split())} {w}!'
     if request.method == 'GET':
         if user is None:
             return render_template('Error.html', error='Указан неверный или несуществующий id', title='Ошибка!')
         if user != current_user:
             return render_template('Error.html', error='У вас нет прав доступа к профилю пользователя', title='Ошибка!')
-        return render_template('profile.html', title=current_user.name)
+        return render_template('profile.html', title=current_user.name,t=w)
     elif request.method == 'POST':
         photo = request.files['photo']
         username = request.form['username']
@@ -116,7 +122,7 @@ def profile(user_id):
             user.check_password = password
         db_sess.commit()
         message = "Данные успешно изменены!"
-        return render_template('profile.html', message=message, title=current_user.name)
+        return render_template('profile.html', message=message, title=current_user.name,t=w)
 
 
 @app.route('/top')
@@ -138,6 +144,8 @@ def task(level_n, task_n):
     reward = 0
     if level_n == 'level_1':
         reward = eval(f'l1_{task_n}.main()')
+    if level_n == 'level_3':
+        reward = eval(f'l3_{task_n}.main()')
     if request.method == 'POST':
         if level_n == 'level_2':
             if task_n == 'task_1':

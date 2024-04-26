@@ -148,6 +148,7 @@
                                     {% endif %}
                                 </div>
                             </li>
+                            {% if 'level_1:task_1' in current_user.lst_complete_task%}
                             <li>
                                 <a href="#" class="toggle">2 задание</a>
                                 <div class="inner">
@@ -165,6 +166,8 @@
                                     {% endif %}
                                 </div>
                             </li>
+                            {% endif %}
+                            {% if 'level_1:task_2' in current_user.lst_complete_task%}
                             <li>
                                 <a href="#" class="toggle">3 задание</a>
                                 <div class="inner">
@@ -178,6 +181,7 @@
                                     {% endif %}
                                 </div>
                             </li>
+                            {% endif %}
                         </ul>
                     </li>
 
@@ -211,6 +215,7 @@
                                 </div>
 
                             </li>
+                            {% if 'level_2:task_1' in current_user.lst_complete_task%}
                             <li>
                                 <a href="#" class="toggle">2 задание</a>
                                 <div class="inner">
@@ -219,6 +224,8 @@
                                     </p>
                                 </div>
                             </li>
+                            {% endif %}
+                            {% if 'level_2:task_2' in current_user.lst_complete_task%}
                             <li>
                                 <a href="#" class="toggle">3 задание</a>
                                 <div class="inner">
@@ -227,6 +234,7 @@
                                     </p>
                                 </div>
                             </li>
+                            {% endif %}
                         </ul>
                     </li>
 
@@ -236,27 +244,58 @@
                             <li>
                                 <a href="#" class="toggle">1 задание</a>
                                 <div class="inner">
+                                    {% if not 'level_3:task_1' in current_user.lst_complete_task %}
                                     <p>
-                                        Задание еще находится в разработке, оно появится в скором обновлении!
+                                        Получите 1 уровень в тетрисе, играя в режиме Solo. Нажмите "Старт", чтобы
+                                        начать. Время ограничено!
                                     </p>
+                                    <p>(Регистрироваться и входить не надо, засчитывается только последняя попытка)</p>
+                                    <p>Инструкция: Вы не должны закрывать открывшееся окно самостоятельно! Дождитесь
+                                        пока оно закроется само. В противном случае задание не будет засчитано!!!</p>
+                                    <a class="btn btn-dark" href="/task/level_3/task_1" style="color:white;">Старт</a>
+                                    {%else%}
+                                    <p>Вы уже проходили это задание!</p>
+                                    {% endif %}
                                 </div>
                             </li>
+                            {% if 'level_3:task_1' in current_user.lst_complete_task%}
                             <li>
                                 <a href="#" class="toggle">2 задание</a>
                                 <div class="inner">
+                                    {% if not 'level_3:task_2' in current_user.lst_complete_task %}
                                     <p>
-                                        Задание еще находится в разработке, оно появится в скором обновлении!
+                                        Получите 2 уровень в тетрисе, играя в режиме Solo. Нажмите "Старт", чтобы
+                                        начать. Время ограничено!
                                     </p>
+                                    <p>(Регистрироваться и входить не надо, засчитывается только последняя попытка)</p>
+                                    <p>Инструкция: Вы не должны закрывать открывшееся окно самостоятельно! Дождитесь
+                                        пока оно закроется само. В противном случае задание не будет засчитано!!!</p>
+                                    <a class="btn btn-dark" href="/task/level_3/task_2" style="color:white;">Старт</a>
+                                    {%else%}
+                                    <p>Вы уже проходили это задание!</p>
+                                    {% endif %}
                                 </div>
                             </li>
+                            {% endif %}
+                            {% if 'level_3:task_2' in current_user.lst_complete_task%}
                             <li>
                                 <a href="#" class="toggle">3 задание</a>
                                 <div class="inner">
+                                    {% if not 'level_3:task_3' in current_user.lst_complete_task %}
                                     <p>
-                                        Задание еще находится в разработке, оно появится в скором обновлении!
+                                        Получите 3 уровень в тетрисе, играя в режиме Solo. Нажмите "Старт", чтобы
+                                        начать. Время ограничено!
                                     </p>
+                                    <p>(Регистрироваться и входить не надо, засчитывается только последняя попытка)</p>
+                                    <p>Инструкция: Вы не должны закрывать открывшееся окно самостоятельно! Дождитесь
+                                        пока оно закроется само. В противном случае задание не будет засчитано!!!</p>
+                                    <a class="btn btn-dark" href="/task/level_3/task_3" style="color:white;">Старт</a>
+                                    {%else%}
+                                    <p>Вы уже проходили это задание!</p>
+                                    {% endif %}
                                 </div>
                             </li>
+                            {% endif %}
                         </ul>
                     </li>
 
