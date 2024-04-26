@@ -28,7 +28,6 @@ def main_window():
 
 @app.route('/basic')
 def basic():
-
     return render_template('basic.html', title='Поставьте пожалуйста 100 баллов')
 
 
