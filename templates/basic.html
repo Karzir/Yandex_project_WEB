@@ -87,7 +87,18 @@
   #tasks ul li a.toggle:hover {
     background: rgba(0, 0, 0, 0.9);
   }
-
+    .notification {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    border: 4px solid black;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -110,6 +121,7 @@
             <p>Также вы сможете посоревноваться со своими друзьями и другими пользователями за первенство по количеству
                 звезд в нашем рейтинге.</p>
             <p>Регистрируйтесь и зовите друзей, задания могут быть как очень лёгкими, так и невероятно сложными. </p>
+            <p>Перед выполнением задания <b>обязательно прочтите инструкцию!</b> При выполнении задания вы больше не сможете его пройти!</p>
             {% if current_user.is_authenticated %}
             <div id="tasks">
                 <ul class="accordion">
@@ -180,7 +192,7 @@
                                                                      target="_blank">здесь.</a>
                                         </p>
                                         <input type="text" name="level_2_task_1"><br>
-                                        <input class='btn btn-dark' type="submit" style="color:white;"
+                                        <input class='btn btn-dark' type="submit" style="color:white; margin-top:15px;"
                                                value="Проверить">
                                     </form>
                                     {%else%}
@@ -194,7 +206,7 @@
                                 <a href="#" class="toggle">2 задание</a>
                                 <div class="inner">
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Задание еще находится в разработке, оно появится в скором обновлении!
                                     </p>
                                 </div>
                             </li>
@@ -202,7 +214,7 @@
                                 <a href="#" class="toggle">3 задание</a>
                                 <div class="inner">
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Задание еще находится в разработке, оно появится в скором обновлении!
                                     </p>
                                 </div>
                             </li>
@@ -216,7 +228,7 @@
                                 <a href="#" class="toggle">1 задание</a>
                                 <div class="inner">
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Задание еще находится в разработке, оно появится в скором обновлении!
                                     </p>
                                 </div>
                             </li>
@@ -224,7 +236,7 @@
                                 <a href="#" class="toggle">2 задание</a>
                                 <div class="inner">
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Задание еще находится в разработке, оно появится в скором обновлении!
                                     </p>
                                 </div>
                             </li>
@@ -232,7 +244,7 @@
                                 <a href="#" class="toggle">3 задание</a>
                                 <div class="inner">
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Задание еще находится в разработке, оно появится в скором обновлении!
                                     </p>
                                 </div>
                             </li>
@@ -246,7 +258,7 @@
                                 <a href="#" class="toggle">1 задание</a>
                                 <div class="inner">
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Задание еще находится в разработке, оно появится в скором обновлении!
                                     </p>
                                 </div>
                             </li>
@@ -254,7 +266,7 @@
                                 <a href="#" class="toggle">2 задание</a>
                                 <div class="inner">
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Задание еще находится в разработке, оно появится в скором обновлении!
                                     </p>
                                 </div>
                             </li>
@@ -262,7 +274,7 @@
                                 <a href="#" class="toggle">3 задание</a>
                                 <div class="inner">
                                     <p>
-                                        Сама напишешь задание, мне лень
+                                        Задание еще находится в разработке, оно появится в скором обновлении!
                                     </p>
                                 </div>
                             </li>
@@ -290,12 +302,13 @@
                   });
                 </script>
             </div>
+            <div id="notification" class="notification"></div>
             {% else %}
             <h1 style="text-align: center;">Для получения доступа к заданиям зарегистрируйтесь или войдите в
                 аккаунт</h1>
             {% endif %}
+
         </div>
     </div>
 </div>
-
 {% endblock %}

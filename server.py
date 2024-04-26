@@ -28,6 +28,7 @@ def main_window():
 
 @app.route('/basic')
 def basic():
+
     return render_template('basic.html', title='Поставьте пожалуйста 100 баллов')
 
 
@@ -135,6 +136,7 @@ def task(level_n, task_n):
     db_sess = db_session.create_session()
     user = db_sess.query(User).get(int(current_user.id))
     k = int(level_n.split('_')[-1])
+    reward = 0
     if level_n == 'level_1':
         reward = eval(f'l1_{task_n}.main()')
     if request.method == 'POST':
@@ -146,14 +148,19 @@ def task(level_n, task_n):
     if reward:
         user.lst_complete_task += f' {level_n}:{task_n}'
     db_sess.commit()
-    return redirect('/')
+    return redirect('/basic')
+
+
+@app.errorhandler(404)
+def pageNot(error):
+    return render_template('Error.html', error='Страница не найдена!')
 
 
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect("/")
+    return redirect("/basic")
 
 
 if __name__ == '__main__':
