@@ -152,7 +152,7 @@ def task(level_n, task_n):
 
 @app.errorhandler(404)
 def pageNot(error):
-    return render_template('Error.html', error='Страница не найдена!')
+    return render_template('Error.html', error='Страница не найдена!', title='Ошибка!')
 
 
 @app.route('/logout')
